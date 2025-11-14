@@ -65,3 +65,67 @@ That's it! The Docker instance will help you get up and running quickly while al
 ## Questions
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+
+## Explanations of my code
+
+1. Lærte å lage flere media collections så de kan høre til riktig collection. Prøver å skjønne hvorfor typescript klager når jeg prøver å lage "relationTo" fra SurfCourses.ts til CourseImages.ts, når det ikke var et problem før. 
+
+Svar: Jeg hadde glemt å endre "media" i TravelLetters.ts til "travel-letter-images". Den skulle altså høre til TravelLetterImages.ts. 
+
+Når jeg fikset dette, hadde jeg fortsatt typescript problemet, men kjørte "npm run generate: types", som fikset problemet!
+
+2. "Is course_images table created or renamed from another table?
+❯ + course_images         create table
+  ~ media › course_images rename table". 
+  
+  Dette skjedde i terminalen etter at jeg endret Media.ts til CourseImages.ts, fordi at denne innholdsamlingen har bilder i den fra før. Da valgte jeg <~ media › course_images rename table> for å kunne beholde bildene.
+
+  Jeg måtte svare på flere tilsvarende spørsmål og det gikk bra til slutt. Vurderer at neste er det kanskje lurere å bare slette "Media.ts" og lage en ny fil hvis jeg vil at det skal hete noe annet, og gjør det fra starten av i tillegg, slik at jeg slipper så mye styr. 
+
+3. Får 404 når jeg prøver å JSON.stringify queryResults på HomePage, plutselig er det 404 på alle sider uansett hva! Skjønner ingenting. 
+
+Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før nå.
+
+4. Jeg får en 404 når jeg kjører npm run dev.
+    - Løsningen: Hadde satte root page.tsx in en mappe, så "http://localhost:3000" fant ikke frem.
+
+5. I admin panelet, får jeg plutselig opp problemet at når jeg trykker inn på et enkelt komponent i en collection, får jeg opp bare en blank side. Det står i consolen: failed to load resource: the server responded with a status of 404 (Not Found).
+     - Sjekk hvilken url jeg får når jeg trykker på et enkelt artikkel.
+     Oppdatering: Plutselig får jeg 404 bare jeg prøver å komme inn på nettsiden. (http://localhost:3000)
+        - Det står ingen problemer i terminalen, in consollen står det 
+               "Failed to load resource: the server responded with a status of 404 (Not Found)"
+
+    Løsningen: Hadde feil url path fordi at root page.tsx satt jeg i en mappe. Tok den ut av mappa.            
+
+6. Når jeg prøver å komme til http://localhost:3000/admin, får jeg opp dette i terminalen hver gang:
+         "Is course_images_id column in payload_locked_documents_rels table created or renamed from another column?
+            ❯ + course_images_id            create column
+             ~ media_id › course_images_id rename column GET / 404 in 45ms".
+        - Så velger jeg den nederste.
+        - Så får jeg denne: 
+          "Is travel_letter_images_id column in payload_locked_documents_rels table created or renamed from another column?
+          ❯ + travel_letter_images_id create column"
+       - Så velger jeg den.
+       - At jeg får opp de samme spørsmålene om og om igjen har visst med SQlite å gjøre, fordi de blir visst ikke lagret.
+       - Da kommer jeg til admin panelet, men får dette in consollen:
+       "[Error] Failed to load resource: the server responded with a status of 404 (Not Found) (chunk-AZDI6MW4.js.map, line 0)"
+
+       Løsningen: Måtte faktisk lage nytt prosjekt, da jeg ikke fant ut av dette. 
+
+7. Får feilmeldingen i likhet med 1., men får flere errorer når jeg prøver å kjøre "npm run generate:types"
+
+    - Lukket og åpnet payload prosjektet igjen, kjørte "npm run generate:types" en gang til, og da fungerte alt sammen.
+
+8. Når jeg er i admin panelet, trykker jeg inn på en innholdssamling "Surf Coursees" og prøver å opprette en ny element in "Surf Courses", får jeg denne feilmelding i Next i browseren: "getFromImportMap: PayloadComponent not found in importMap {key: "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField"PayloadComponent: "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField"schemaPath: "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField"} "You may need to run the `payload generate:importmap` command to generate the importMap ahead of runtime." 
+    - Denne kommer kun ifm innholdssamlingen "Surf Courses".
+    - Jeg måtte kjøre `npm generate:importmap`, og da forsvant problemet!
+
+9. Begynner å få en bedre forståelse på forskjellen mellom blokker og innholdssamlinger. 
+      - Innholdssamlinger kan brukes når de har dokumenter som skal gjenbrukes, fordi de ligger mer tilgjengelig i databasen.  
+      - Blokker fungerer bedre for layout og struktur.
+
+10. Lærte: Blokker og innholdsamlinger kan brukes på samme side. Man kan bruke blokker og "relationTo:" for at brukeren kan velge deler av valgt innholdsamling i blokken. 
+    - I dette prosjektet skal jeg vise "SurfCourses.ts" og "TravelLetters.ts" uten en blokk som ramme, siden 
+    det er meningen å vise alle kursene og reisebrev.
+      
+    
