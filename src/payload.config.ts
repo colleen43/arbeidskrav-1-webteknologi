@@ -12,6 +12,7 @@ import { CourseImages } from './collections/CourseImages'
 import { SurfCourses } from './collections/SurfCourses'
 import { TravelLetterImages } from './collections/TravelLetterImages'
 import { TravelLetters } from './collections/TravelLetters'
+import { Pages } from './collections/Pages'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, CourseImages, SurfCourses, TravelLetterImages, TravelLetters],
+  collections: [Users, Media, CourseImages, SurfCourses, TravelLetterImages, TravelLetters, Pages],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

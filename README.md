@@ -127,5 +127,12 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
 10. Lærte: Blokker og innholdsamlinger kan brukes på samme side. Man kan bruke blokker og "relationTo:" for at brukeren kan velge deler av valgt innholdsamling i blokken. 
     - I dette prosjektet skal jeg vise "SurfCourses.ts" og "TravelLetters.ts" uten en blokk som ramme, siden 
     det er meningen å vise alle kursene og reisebrev.
+
+11. Lærer: Å forstå hvordan innholdssamling for undersider fungerer.
+
+12. Error: "'const' declarations must be initialized."
+      - Fikk dette på "admin" og "fields" mens jeg prøvde å lage innholdssamlingen for undersider. 
+
+      Løst: Hadde et par ekstra curly brackets. 
       
     
