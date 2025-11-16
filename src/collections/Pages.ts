@@ -1,3 +1,4 @@
+import { HeroBannerBlock } from '@/blocks/HeroBannerBlock'
 import { CollectionConfig } from 'payload'
 
 export const Pages: CollectionConfig = {
@@ -17,6 +18,21 @@ export const Pages: CollectionConfig = {
       admin: {
         description: 'Sidetittel, brukes som overskrift og i browseren.',
       },
+    },
+    {
+      name: 'slug',
+      label: 'Side-url',
+      type: 'text',
+      unique: true,
+      admin: {
+        description: 'Hvilken sider-URL skal siden vidses på? Den må være unik.',
+      },
+    },
+    {
+      name: 'blocks',
+      label: 'Sideblokker',
+      type: 'blocks',
+      blocks: [HeroBannerBlock],
     },
   ],
 }

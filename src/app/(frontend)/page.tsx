@@ -1,5 +1,6 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import HeroBanner from '@/components/HeroBanner/HeroBanner'
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
@@ -8,9 +9,5 @@ export default async function HomePage() {
     collection: 'surf-courses',
   })
 
-  return (
-    <main>
-      <pre>{JSON.stringify(queryResults, null, 2)}</pre>
-    </main>
-  )
+  return <main></main>
 }

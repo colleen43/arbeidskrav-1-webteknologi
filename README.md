@@ -62,6 +62,12 @@ Alternatively, you can use [Docker](https://www.docker.com) to spin up this temp
 
 That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
 
+## Brukernavn og passord
+
+colleen@codes.no
+
+yoohoo$987
+
 ## Questions
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
@@ -129,6 +135,8 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
     det er meningen å vise alle kursene og reisebrev.
 
 11. Lærer: Å forstå hvordan innholdssamling for undersider fungerer.
+      - Når man lager en innholdssamling for undersider, kan man lage nye sider fra admin panelet istedenfor å måtte endre
+      selve koden.
 
 12. Error: "'const' declarations must be initialized."
       - Fikk dette på "admin" og "fields" mens jeg prøvde å lage innholdssamlingen for undersider. 

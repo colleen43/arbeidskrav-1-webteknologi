@@ -73,6 +73,7 @@ export interface Config {
     'surf-courses': SurfCourse;
     'travel-letter-images': TravelLetterImage;
     'travel-letters': TravelLetter;
+    pages: Page;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     'surf-courses': SurfCoursesSelect<false> | SurfCoursesSelect<true>;
     'travel-letter-images': TravelLetterImagesSelect<false> | TravelLetterImagesSelect<true>;
     'travel-letters': TravelLettersSelect<false> | TravelLettersSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -252,6 +254,36 @@ export interface TravelLetter {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  /**
+   * Sidetittel, brukes som overskrift og i browseren.
+   */
+  title: string;
+  /**
+   * Hvilken sider-URL skal siden vidses på? Den må være unik.
+   */
+  slug?: string | null;
+  blocks?: HeroBannerBlock[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock".
+ */
+export interface HeroBannerBlock {
+  title: string;
+  subtitle?: string | null;
+  backgroundImage?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'HeroBannerBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -297,6 +329,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'travel-letters';
         value: number | TravelLetter;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -442,6 +478,32 @@ export interface TravelLettersSelect<T extends boolean = true> {
   introduction?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  blocks?:
+    | T
+    | {
+        HeroBannerBlock?: T | HeroBannerBlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock_select".
+ */
+export interface HeroBannerBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  backgroundImage?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
