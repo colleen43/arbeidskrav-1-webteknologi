@@ -142,5 +142,7 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
       - Fikk dette på "admin" og "fields" mens jeg prøvde å lage innholdssamlingen for undersider. 
 
       Løst: Hadde et par ekstra curly brackets. 
+
+13. Husk: Man må ha en block (ts), en komponent (tsx), og en RenderBlocks komponent.
       
     

@@ -12,13 +12,13 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <header className="p-7">
-        <nav className="flex gap-10 justify-center">
-          <Link href="/">Home</Link>
-          <Link href="/">Travel Letters</Link>
-        </nav>
-      </header>
       <body>
+        <header className="p-7">
+          <nav className="flex gap-10 justify-center">
+            <Link href="/">Home</Link>
+            <Link href="/">Travel Letters</Link>
+          </nav>
+        </header>
         <main>{children}</main>
       </body>
     </html>
