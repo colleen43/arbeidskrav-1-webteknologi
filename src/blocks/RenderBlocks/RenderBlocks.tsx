@@ -13,12 +13,7 @@ export default function RenderBlocks({ blocks }: RenderBlocksProps) {
   return blocks.map((block) => {
     switch (block.blockType) {
       case 'HeroBannerBlock': {
-        ;<HeroBanner
-          key={block.id}
-          title={block.title}
-          subtitle={block.subtitle}
-          backgroundImage={}
-        />
+        return <HeroBanner key={block.id} title={block.title} subtitle={block.subtitle} />
       }
 
       default: {

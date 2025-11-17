@@ -15,7 +15,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body>
         <header className="p-7">
           <nav className="flex gap-10 justify-center">
-            <Link href="/">Home</Link>
+            <Link href="/home">Home</Link>
             <Link href="/">Travel Letters</Link>
           </nav>
         </header>

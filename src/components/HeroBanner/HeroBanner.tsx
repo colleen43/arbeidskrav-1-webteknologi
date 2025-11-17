@@ -1,4 +1,5 @@
 import { Media } from '@/payload-types'
+//import styles from './HeroBanner.module.css'
 
 type HeroBannerProps = {
   title: string
@@ -6,9 +7,9 @@ type HeroBannerProps = {
   backgroundImage?: Media | number | null
 }
 
-export default function HeroBanner({ title, subtitle, backgroundImage }: HeroBannerProps) {
+export default function HeroBanner({ title, subtitle }: HeroBannerProps) {
   return (
-    <hgroup className="flex justify-center items-center flex-col p-20">
+    <hgroup className="flex justify-center items-center flex-col p-20 bg-blue-400">
       <h1 className="text-4xl m-4 text-center">{title}</h1>
       {subtitle && <h2 className="text-2xl m-4 text-center">{subtitle}</h2>}
     </hgroup>

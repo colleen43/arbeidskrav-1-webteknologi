@@ -267,6 +267,7 @@ export interface Page {
    */
   slug?: string | null;
   blocks?: HeroBannerBlock[] | null;
+  featuredCourses?: (number | SurfCourse)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -491,6 +492,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         HeroBannerBlock?: T | HeroBannerBlockSelect<T>;
       };
+  featuredCourses?: T;
   updatedAt?: T;
   createdAt?: T;
 }

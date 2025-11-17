@@ -144,5 +144,31 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
       Løst: Hadde et par ekstra curly brackets. 
 
 13. Husk: Man må ha en block (ts), en komponent (tsx), og en RenderBlocks komponent.
-      
+
+14. Problem: Klarer ikke vise blokken som har har lagt til i admin panelet på siden. 
+    - Svar: Hadde glemt "return" i switch casen for "HeroBannerBlock".
+
+15. Problem: Background farge viser seg ikke på siden, og ingen andre tailwind styles heller. 
+
+ - Svar: Kom på at tailwind ikke er konfigurert fordi at jeg har laget et nytt prosjekt.
+ Hvordan installere tailwind: 
+     1. Kjør `npm install -D tailwindcss postcss autoprefixer`
+     2. Kjør `npx tailwindcss init -p`
+
+     Dette fungerer ikke, sliter litt visst fordi jeg installerer v4 istedenfor v3.
+       - Kjører `npm uninstall tailwindcss`.
+       - Kjører `npm install -D tailwindcss@^3 postcss autoprefixer`
+       - Kjører ` npx tailwindcss init -p`
+       - Legg dette til: `content: ['./src/**/*.{js,ts,jsx,tsx,mdx}']` i tailwind.config.js for 
+       å inkludere src filene.
+       - Add dette til styles.css: 
+               @tailwind base;
+               @tailwind components;
+               @tailwind utilities;
+       - Kjør npm run dev
+       - Fungerte fortsatt ikke, men så slettet jeg alt som var preskrevet i styles.css, og da fungerte alt bra. 
+
+16. Noe å tenke på: Er det nødvendig å legge collections in en blokk? Ønsker eieren ofte dette, eller holder det for dem å kunne endre på dem, men at de ikke kan flytte dem til en annen page eller sted på page?  
+     - Vet ikke svaret akkurat nå, men for enkelhetens skyld skriver jeg det bare direkte på siden.
+     - Update: Fant ut at å legge surf courses collection i en blokk var faktisk enklest, slik at jeg slipper å 
     
