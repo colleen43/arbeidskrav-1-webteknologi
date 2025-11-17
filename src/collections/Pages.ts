@@ -34,5 +34,11 @@ export const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [HeroBannerBlock],
     },
+    {
+      name: 'featuredCourses',
+      type: 'relationship',
+      relationTo: 'surf-courses',
+      hasMany: true,
+    },
   ],
 }

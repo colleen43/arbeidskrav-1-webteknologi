@@ -1,4 +1,6 @@
-export const SurfCoursesBlock = {
+import { Block } from 'payload'
+
+export const SurfCoursesBlock: Block = {
   slug: 'SurfCoursesBlock',
   interfaceName: 'SurfCoursesBlock',
   fields: [
