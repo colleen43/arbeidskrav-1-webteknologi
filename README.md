@@ -72,7 +72,7 @@ yoohoo$987
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
 
-## Explanations of my code
+## Kode forklaringer, notater, og løste feilmeldinger
 
 1. Lærte å lage flere media collections så de kan høre til riktig collection. Prøver å skjønne hvorfor typescript klager når jeg prøver å lage "relationTo" fra SurfCourses.ts til CourseImages.ts, når det ikke var et problem før. 
 
@@ -120,7 +120,7 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
 
 7. Får feilmeldingen i likhet med 1., men får flere errorer når jeg prøver å kjøre "npm run generate:types"
 
-    - Lukket og åpnet payload prosjektet igjen, kjørte "npm run generate:types" en gang til, og da fungerte alt sammen.
+    - Lukket og åpnet payload prosjektet igjen, kjørte `npm run generate:types` en gang til, og da fungerte alt sammen.
 
 8. Når jeg er i admin panelet, trykker jeg inn på en innholdssamling "Surf Coursees" og prøver å opprette en ny element in "Surf Courses", får jeg denne feilmelding i Next i browseren: "getFromImportMap: PayloadComponent not found in importMap {key: "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField"PayloadComponent: "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField"schemaPath: "@payloadcms/richtext-lexical/rsc#RscEntryLexicalField"} "You may need to run the `payload generate:importmap` command to generate the importMap ahead of runtime." 
     - Denne kommer kun ifm innholdssamlingen "Surf Courses".
@@ -170,5 +170,52 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
 
 16. Noe å tenke på: Er det nødvendig å legge collections in en blokk? Ønsker eieren ofte dette, eller holder det for dem å kunne endre på dem, men at de ikke kan flytte dem til en annen page eller sted på page?  
      - Vet ikke svaret akkurat nå, men for enkelhetens skyld skriver jeg det bare direkte på siden.
-     - Update: Fant ut at å legge surf courses collection i en blokk var faktisk enklest, slik at jeg slipper å 
-    
+     - Update: Fant ut at å legge surf courses collection i en blokk var faktisk enklest, slik at jeg slipper å lage a page renderer i tillegg til en RenderBlocks.
+
+
+17. Plutselig fikk en feilmelding som ikke var der før, på HeroBanner komponent. 
+      - JSX element implicitly has type "any" because no interface "JSX.IntrinsicElements" exists.
+
+      - Cannot find module 'payload' or its corresponding type declarations.
+
+      Svar: Åpnet/lukket payload, så ble det borte. Disse kommer og går selv om jeg ikke endrer koden. 
+
+
+18.  Når jeg prøver "npm run dev" - > arbeidskrav-1-webteknologi@1.0.0 dev
+           "> cross-env NODE_OPTIONS=--no-deprecation next dev
+           sh: cross-env: command not found"
+
+     Svar: Glemte at jeg må reinstallere node modules. 
+           - `npm install`
+           - `npm audit fix --force`- Kjørte dette i tillegg, da det var det var 3 "high" vulnerabilities.
+
+19. Problem i browseren: 
+       - "It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration."
+       - Dette problemet har ikke vært før, men kom etter at jeg slettet og installerte node modules på nytt. Jeg bruker tailwind v3 istedenfor v4, kanskje det er noe av problemet.
+       - Skal prøve å endre package.json til v3 igjen og kjøre npm install på nytt. 
+          - Dette fungerte. 
+
+20. Læring: Hvor eksakt kommer parameterne som man bruker i komponentene fra? Kommer de fra admin?    
+
+      - Svar: Dette er flyten: page.tsx (i [pageSlug] mappa) bruker payload.find for å finne en spesifikk side basert på urlen som brukeren skriver. Den sender all informasjon fra blokkene til RenderBlocks.tsx gjennom <RenderBlocks blocks={page.blocks} /> (som er på page.tsx).  I RenderBlocks.tsx, bruker den switch for å sjekke blockType for å vite hvilken type blokk det er. Her kaller de på de forskjellige komponentene:(`HeroBanner key={block.id} title={block.title} subtitle={block.subtitle}`) for å hente inn riktig informasjon gjennom RenderBlocks og skrive det ut på siden gjennom komponenten. 
+
+      Blokkene er kun for å definere hva som kan bli skrevet i admin.
+
+21. Læring: SurfCoursesBlock er litt annerledes fordi det er ikke bare en enkel block som får inn info skrevet direkte i admin, men en block som skal inneholde kolleksjonen SurfCourses.ts. 
+
+22. For SurfCourses.tsx, står det at:
+  -- 'SurfCourses' cannot be used as a JSX component. 
+  -- Its type '({ courses }: { courses: any; }) => void' is not a valid JSX element type.
+  -- Type '({ courses }: { courses: any; }) => void' is not assignable to type '(props: any) => ReactNode | Promise<ReactNode>'.
+  -- Type 'void' is not assignable to type 'ReactNode | Promise<ReactNode>'.´
+
+  Svar: Lukket og åpnet hele cursor appen, ikke bare dette prosjektet. Nå forsvant alle feilmeldingene!
+
+23. I SurfCourses.tsx, viser ingenting på siden fordi at jeg har glemt å legge selve mappingen i en return. Derfor fungerte console loggene mine, men ikke selve rendering på siden. 
+    - Fungerte fortsatt ikke, så husket jeg at jeg må returnere 2 ganger. 
+
+24. Jeg har brukt RichText på en av mine fields in SurfCourses collection, og når jeg skulle vise frem fra komponenten, viste teksten seg i browseren, men uten at RichText attributter som punkter og bold text slik det så ut in admin. Jeg har importert RichText i komponenten og brukt den rundt innholdet også.
+
+  1. Sjekker i consollen hvordan `course.highlights` ser ut. -- det er et object.
+
+25. Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?

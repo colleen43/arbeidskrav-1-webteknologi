@@ -2,6 +2,8 @@
 //vil denne functionen hente inn den riktige slik at hver side
 //får riktig url.
 
+//Denne filen kjører når noen skriver inn en url som matcher [pageSlug]
+
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import RenderBlocks from '@/blocks/RenderBlocks/RenderBlocks'

@@ -266,8 +266,7 @@ export interface Page {
    * Hvilken sider-URL skal siden vidses på? Den må være unik.
    */
   slug?: string | null;
-  blocks?: HeroBannerBlock[] | null;
-  featuredCourses?: (number | SurfCourse)[] | null;
+  blocks?: (HeroBannerBlock | SurfCoursesBlock)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -282,6 +281,16 @@ export interface HeroBannerBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'HeroBannerBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SurfCoursesBlock".
+ */
+export interface SurfCoursesBlock {
+  courses?: (number | SurfCourse)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'SurfCoursesBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -491,8 +500,8 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         HeroBannerBlock?: T | HeroBannerBlockSelect<T>;
+        SurfCoursesBlock?: T | SurfCoursesBlockSelect<T>;
       };
-  featuredCourses?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -504,6 +513,15 @@ export interface HeroBannerBlockSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
   backgroundImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SurfCoursesBlock_select".
+ */
+export interface SurfCoursesBlockSelect<T extends boolean = true> {
+  courses?: T;
   id?: T;
   blockName?: T;
 }
