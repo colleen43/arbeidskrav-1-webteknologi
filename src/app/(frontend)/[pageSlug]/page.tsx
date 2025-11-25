@@ -23,6 +23,7 @@ export default async function Page({ params }: PageParams) {
         equals: pageSlug,
       },
     },
+    depth: 2,
   })
 
   const page = queryResults.docs[0]

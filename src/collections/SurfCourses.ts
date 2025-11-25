@@ -41,7 +41,7 @@ export const SurfCourses: CollectionConfig = {
     {
       type: 'richText',
       name: 'highlights',
-      label: 'Highlights that participants can look forward too',
+      label: 'Highlights that participants can look forward too - press "/" for commands.',
       required: true,
     },
     {

@@ -1,8 +1,19 @@
-//Hvilken api har SurfCourses.tsx tilgang til?
-
+import { SerializedEditorState, SerializedLexicalNode } from '@payloadcms/richtext-lexical/lexical'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 
-export default function SurfCourses({ courses }) {
+type Course = {
+  title: string
+  id: number
+  level: string
+  price: number
+  highlights: SerializedEditorState<SerializedLexicalNode>
+}
+
+type SurfCoursesProps = {
+  courses: Course[]
+}
+
+export default function SurfCourses({ courses }: SurfCoursesProps) {
   console.log(courses)
   return (
     <main>
@@ -13,7 +24,9 @@ export default function SurfCourses({ courses }) {
             <h2>{course.title}</h2>
             <h3>{course.level}</h3>
             <h3>Price: ${course.price}</h3>
-            <RichText data={course.highlights} />
+            <div className="rich-text-content">
+              <RichText data={course.highlights} />
+            </div>
           </article>
         )
       })}

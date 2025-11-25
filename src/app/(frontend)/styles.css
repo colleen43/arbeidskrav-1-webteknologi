@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* RichText styling */
+
+@layer components {
+ .rich-text-content strong {
+   @apply font-bold
+ }
+
+ .rich-text-content em {
+    @apply italic
+ }
+
+ .rich-text-content ul {
+    @apply list-disc list-inside mb-4 space-y-1
+    /*list-disc: viser bullet points*/
+    /*list-inside: bullet points inni listen*/
+    /*space-y-1: mellomrom mellom bulletpoints*/
+}
+
+.rich-text-content li {
+    @apply ml-4 /*margin-left*/
+}
+
+.rich-text-content h4 {
+@apply text-xl font-semibold mt-4 mb-2 ;
+}
+
+
+
+}

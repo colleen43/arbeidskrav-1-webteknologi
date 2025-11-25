@@ -203,19 +203,12 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
 
 21. Læring: SurfCoursesBlock er litt annerledes fordi det er ikke bare en enkel block som får inn info skrevet direkte i admin, men en block som skal inneholde kolleksjonen SurfCourses.ts. 
 
-22. For SurfCourses.tsx, står det at:
-  -- 'SurfCourses' cannot be used as a JSX component. 
-  -- Its type '({ courses }: { courses: any; }) => void' is not a valid JSX element type.
-  -- Type '({ courses }: { courses: any; }) => void' is not assignable to type '(props: any) => ReactNode | Promise<ReactNode>'.
-  -- Type 'void' is not assignable to type 'ReactNode | Promise<ReactNode>'.´
-
-  Svar: Lukket og åpnet hele cursor appen, ikke bare dette prosjektet. Nå forsvant alle feilmeldingene!
-
-23. I SurfCourses.tsx, viser ingenting på siden fordi at jeg har glemt å legge selve mappingen i en return. Derfor fungerte console loggene mine, men ikke selve rendering på siden. 
+22. I SurfCourses.tsx, viser ingenting på siden fordi at jeg har glemt å legge selve mappingen i en return. Derfor fungerte console loggene mine, men ikke selve rendering på siden. 
     - Fungerte fortsatt ikke, så husket jeg at jeg må returnere 2 ganger. 
 
-24. Jeg har brukt RichText på en av mine fields in SurfCourses collection, og når jeg skulle vise frem fra komponenten, viste teksten seg i browseren, men uten at RichText attributter som punkter og bold text slik det så ut in admin. Jeg har importert RichText i komponenten og brukt den rundt innholdet også.
+23. Jeg har brukt RichText på en av mine fields in SurfCourses collection, og når jeg skulle vise frem fra komponenten, viste teksten seg i browseren, men uten at RichText attributter som punkter og bold text slik det så ut in admin. Jeg har importert RichText i komponenten og brukt den rundt innholdet også.
 
   1. Sjekker i consollen hvordan `course.highlights` ser ut. -- det er et object.
+  2. Prøvde å legge til "depth:2" i `[PageSlug]/page.tsx`, men det endret ikke på noe. 
 
-25. Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?
+24. Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?
