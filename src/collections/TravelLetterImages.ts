@@ -2,8 +2,8 @@
 
 import type { CollectionConfig } from 'payload'
 
-export const MyTravelLetterImages: CollectionConfig = {
-  slug: 'my-travel-letter-images',
+export const TravelLetterImages: CollectionConfig = {
+  slug: 'travel-letter-images',
   access: {
     read: () => true,
   },

@@ -16,7 +16,7 @@ export const TravelLetters: CollectionConfig = {
     {
       type: 'relationship',
       name: 'photo',
-      relationTo: 'my-travel-letter-images',
+      relationTo: 'travel-letter-images',
       required: true,
     },
     {

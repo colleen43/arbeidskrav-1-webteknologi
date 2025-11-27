@@ -72,8 +72,8 @@ export interface Config {
     'course-images': CourseImage;
     'surf-courses': SurfCourse;
     'travel-letters': TravelLetter;
-    'my-travel-letter-images': MyTravelLetterImage;
     pages: Page;
+    'travel-letter-images': TravelLetterImage;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,8 +86,8 @@ export interface Config {
     'course-images': CourseImagesSelect<false> | CourseImagesSelect<true>;
     'surf-courses': SurfCoursesSelect<false> | SurfCoursesSelect<true>;
     'travel-letters': TravelLettersSelect<false> | TravelLettersSelect<true>;
-    'my-travel-letter-images': MyTravelLetterImagesSelect<false> | MyTravelLetterImagesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    'travel-letter-images': TravelLetterImagesSelect<false> | TravelLetterImagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -227,7 +227,7 @@ export interface SurfCourse {
 export interface TravelLetter {
   id: number;
   title: string;
-  photo: number | MyTravelLetterImage;
+  photo: number | TravelLetterImage;
   date: string;
   introduction: string;
   updatedAt: string;
@@ -235,9 +235,9 @@ export interface TravelLetter {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "my-travel-letter-images".
+ * via the `definition` "travel-letter-images".
  */
-export interface MyTravelLetterImage {
+export interface TravelLetterImage {
   id: number;
   alt: string;
   updatedAt: string;
@@ -373,12 +373,12 @@ export interface PayloadLockedDocument {
         value: number | TravelLetter;
       } | null)
     | ({
-        relationTo: 'my-travel-letter-images';
-        value: number | MyTravelLetterImage;
-      } | null)
-    | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'travel-letter-images';
+        value: number | TravelLetterImage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -509,9 +509,55 @@ export interface TravelLettersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "my-travel-letter-images_select".
+ * via the `definition` "pages_select".
  */
-export interface MyTravelLetterImagesSelect<T extends boolean = true> {
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  blocks?:
+    | T
+    | {
+        HeroBannerBlock?: T | HeroBannerBlockSelect<T>;
+        SurfCoursesBlock?: T | SurfCoursesBlockSelect<T>;
+        TravelLettersBlock?: T | TravelLettersBlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock_select".
+ */
+export interface HeroBannerBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  backgroundImage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SurfCoursesBlock_select".
+ */
+export interface SurfCoursesBlockSelect<T extends boolean = true> {
+  courses?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TravelLettersBlock_select".
+ */
+export interface TravelLettersBlockSelect<T extends boolean = true> {
+  travelLetters?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "travel-letter-images_select".
+ */
+export interface TravelLetterImagesSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -558,52 +604,6 @@ export interface MyTravelLetterImagesSelect<T extends boolean = true> {
               filename?: T;
             };
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages_select".
- */
-export interface PagesSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  blocks?:
-    | T
-    | {
-        HeroBannerBlock?: T | HeroBannerBlockSelect<T>;
-        SurfCoursesBlock?: T | SurfCoursesBlockSelect<T>;
-        TravelLettersBlock?: T | TravelLettersBlockSelect<T>;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeroBannerBlock_select".
- */
-export interface HeroBannerBlockSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  backgroundImage?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SurfCoursesBlock_select".
- */
-export interface SurfCoursesBlockSelect<T extends boolean = true> {
-  courses?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TravelLettersBlock_select".
- */
-export interface TravelLettersBlockSelect<T extends boolean = true> {
-  travelLetters?: T;
-  id?: T;
-  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
