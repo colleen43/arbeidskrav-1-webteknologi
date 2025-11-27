@@ -218,4 +218,12 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
 
 24. Læring: Navnene i api'ene i admin kommer fra "name" i både collections og blocks. "slug" fra blokkene lages til "blockType" i api'ene. 
 
-24. Spørsmål: Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?
+25. Payload liker lite at jeg endrer på collections i etterkant: Jeg la til bildestørrelser i TravelLetterImages.ts, og da klikket det i admin. Jeg kan ikke slette de gamle bildene fra admin heller, mens jeg får lov å laste opp nye bilder, og da fungerer de. 
+  - Jeg prøvde å slette TravelLetterImages.ts og lage på nytt, men når jeg gjør det, er de gamle bildene fortsatt der i admin som jeg ikke kan slette. Skal prøve å lage en ny collection, men med et annet navn. Kanskje det hjelper.
+  - Jeg laget en mappe med nytt navn, men det var egentlig ikke problemet. Problemet var at bildene var fortsatt i payload databasen, så man kunne fortsatt se et sjelett av dem. Så jeg måtte kjøre 
+  - Jeg laget en mappe med nytt navn, men det var egentlig ikke problemet. Problemet var at bildene var fortsatt i payload databasen, så man kunne fortsatt se et sjelett av dem. Så jeg måtte kjøre sqlite3 `arbeidskrav-1-webteknologi.db "DELETE FROM my_travel_letter_images;"` i terminalen og avslutte Cursor og starte opp igjen -- nå er de gamle bildene borte. 
+
+  MEN - jeg får forstatt slike problemer i terminalen som i punkt 2 pga at jeg endret navnet på MyTravelImages.ts kolleksjon. Så skal forsøke å slette og lage en ny fil slik at jeg slipper å svare på disse spørsmålene hver gang. 
+
+
+26. Spørsmål: Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?

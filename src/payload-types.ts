@@ -71,8 +71,8 @@ export interface Config {
     media: Media;
     'course-images': CourseImage;
     'surf-courses': SurfCourse;
-    'travel-letter-images': TravelLetterImage;
     'travel-letters': TravelLetter;
+    'my-travel-letter-images': MyTravelLetterImage;
     pages: Page;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -85,8 +85,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'course-images': CourseImagesSelect<false> | CourseImagesSelect<true>;
     'surf-courses': SurfCoursesSelect<false> | SurfCoursesSelect<true>;
-    'travel-letter-images': TravelLetterImagesSelect<false> | TravelLetterImagesSelect<true>;
     'travel-letters': TravelLettersSelect<false> | TravelLettersSelect<true>;
+    'my-travel-letter-images': MyTravelLetterImagesSelect<false> | MyTravelLetterImagesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -222,9 +222,22 @@ export interface SurfCourse {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "travel-letter-images".
+ * via the `definition` "travel-letters".
  */
-export interface TravelLetterImage {
+export interface TravelLetter {
+  id: number;
+  title: string;
+  photo: number | MyTravelLetterImage;
+  date: string;
+  introduction: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "my-travel-letter-images".
+ */
+export interface MyTravelLetterImage {
   id: number;
   alt: string;
   updatedAt: string;
@@ -238,19 +251,32 @@ export interface TravelLetterImage {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "travel-letters".
- */
-export interface TravelLetter {
-  id: number;
-  title: string;
-  photo: number | TravelLetterImage;
-  date: string;
-  introduction: string;
-  updatedAt: string;
-  createdAt: string;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    mobile?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    widescreen?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -343,12 +369,12 @@ export interface PayloadLockedDocument {
         value: number | SurfCourse;
       } | null)
     | ({
-        relationTo: 'travel-letter-images';
-        value: number | TravelLetterImage;
-      } | null)
-    | ({
         relationTo: 'travel-letters';
         value: number | TravelLetter;
+      } | null)
+    | ({
+        relationTo: 'my-travel-letter-images';
+        value: number | MyTravelLetterImage;
       } | null)
     | ({
         relationTo: 'pages';
@@ -471,9 +497,21 @@ export interface SurfCoursesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "travel-letter-images_select".
+ * via the `definition` "travel-letters_select".
  */
-export interface TravelLetterImagesSelect<T extends boolean = true> {
+export interface TravelLettersSelect<T extends boolean = true> {
+  title?: T;
+  photo?: T;
+  date?: T;
+  introduction?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "my-travel-letter-images_select".
+ */
+export interface MyTravelLetterImagesSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -486,18 +524,40 @@ export interface TravelLetterImagesSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "travel-letters_select".
- */
-export interface TravelLettersSelect<T extends boolean = true> {
-  title?: T;
-  photo?: T;
-  date?: T;
-  introduction?: T;
-  updatedAt?: T;
-  createdAt?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        mobile?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        widescreen?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
