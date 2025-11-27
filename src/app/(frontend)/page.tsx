@@ -1,13 +1,5 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
-import HeroBanner from '@/components/HeroBanner/HeroBanner'
+import { redirect } from 'next/navigation'
 
-export default async function HomePage() {
-  const payload = await getPayload({ config })
-
-  const queryResults = await payload.find({
-    collection: 'surf-courses',
-  })
-
-  return <main></main>
+export default function HomePage() {
+  redirect('/home')
 }

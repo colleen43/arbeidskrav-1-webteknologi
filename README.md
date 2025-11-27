@@ -210,5 +210,12 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
 
   1. Sjekker i consollen hvordan `course.highlights` ser ut. -- det er et object.
   2. Prøvde å legge til "depth:2" i `[PageSlug]/page.tsx`, men det endret ikke på noe. 
+  `Svar:` RichText rendrer bare html, jeg må selv style i koden for å få frem selve stylingen. 
+  3. Jeg wrapper RichText i et <div> element istedenfor globalt for at den ikke skal påvirke andre HTML elementer (f.eks. ul/li lister i nav baren).
 
-24. Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?
+23. Hvis jeg skal lage home siden i Pages.ts, hvilken side kommer jeg til da når jeg skriver localhost:3000?
+- Jeg prøvde først å hente inn home fra Pages.ts gjennom den statiske page.tsx på samme måte som jeg gjorde i [pageSlug]/page.tsx. Men da kommer jeg på samme siden enten jeg skriver localhost:3000 eller localhost:3000/home. Så da tar jeg heller en redirect til "/home" på den statiske siden. 
+
+24. Læring: Navnene i api'ene i admin kommer fra "name" i både collections og blocks. "slug" fra blokkene lages til "blockType" i api'ene. 
+
+24. Spørsmål: Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?

@@ -1,5 +1,6 @@
 import { HeroBannerBlock } from '@/blocks/HeroBannerBlock'
 import { SurfCoursesBlock } from '@/blocks/SurfCoursesBlock'
+import { TravelLettersBlock } from '@/blocks/TravelLettersBlock'
 import { CollectionConfig } from 'payload'
 
 export const Pages: CollectionConfig = {
@@ -33,7 +34,7 @@ export const Pages: CollectionConfig = {
       name: 'blocks',
       label: 'Sideblokker',
       type: 'blocks',
-      blocks: [HeroBannerBlock, SurfCoursesBlock],
+      blocks: [HeroBannerBlock, SurfCoursesBlock, TravelLettersBlock],
     },
   ],
 }

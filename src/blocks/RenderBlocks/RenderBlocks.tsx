@@ -1,8 +1,9 @@
-import { HeroBannerBlock, SurfCoursesBlock } from '@/payload-types'
+import { HeroBannerBlock, SurfCoursesBlock, TravelLettersBlock } from '@/payload-types'
 import HeroBanner from '@/components/HeroBanner/HeroBanner'
-import SurfCourses from '@/components/HeroBanner/SurfCourses'
+import SurfCourses from '@/components/SurfCourses'
+import TravelLetters from '@/components/TravelLetters'
 
-type CustomBlock = HeroBannerBlock | SurfCoursesBlock
+type CustomBlock = HeroBannerBlock | SurfCoursesBlock | TravelLettersBlock
 
 type RenderBlocksProps = {
   blocks: CustomBlock[] | null | undefined
@@ -22,6 +23,10 @@ export default function RenderBlocks({ blocks }: RenderBlocksProps) {
 
       case 'SurfCoursesBlock': {
         return <SurfCourses key={block.id} courses={block.courses} />
+      }
+
+      case 'TravelLettersBlock': {
+        return <TravelLetters key={block.id} travelLetters={block.travelLetters} />
       }
 
       default: {

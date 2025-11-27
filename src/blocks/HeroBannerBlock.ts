@@ -5,8 +5,8 @@
 import { Block } from 'payload'
 
 export const HeroBannerBlock: Block = {
-  slug: 'HeroBannerBlock',
-  interfaceName: 'HeroBannerBlock', //Brukes av Typescript til å lage typen til blokken.
+  slug: 'HeroBannerBlock', //blir "blockType" i api'et.
+  interfaceName: 'HeroBannerBlock', //Brukes av Typescript til å generere block typen.
   fields: [
     {
       name: 'title',
