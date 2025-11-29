@@ -74,6 +74,7 @@ export interface Config {
     'travel-letters': TravelLetter;
     pages: Page;
     'travel-letter-images': TravelLetterImage;
+    'travel-letter-posts': TravelLetterPost;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +89,7 @@ export interface Config {
     'travel-letters': TravelLettersSelect<false> | TravelLettersSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     'travel-letter-images': TravelLetterImagesSelect<false> | TravelLetterImagesSelect<true>;
+    'travel-letter-posts': TravelLetterPostsSelect<false> | TravelLetterPostsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -230,6 +232,10 @@ export interface TravelLetter {
   photo: number | TravelLetterImage;
   date: string;
   introduction: string;
+  /**
+   * What url should this blog post be shown through?
+   */
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -330,6 +336,35 @@ export interface TravelLettersBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "travel-letter-posts".
+ */
+export interface TravelLetterPost {
+  id: number;
+  photo: number | TravelLetterImage;
+  blogContent: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * IMPORTANT: Must be the same url as used on the introduction page
+   */
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -379,6 +414,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'travel-letter-images';
         value: number | TravelLetterImage;
+      } | null)
+    | ({
+        relationTo: 'travel-letter-posts';
+        value: number | TravelLetterPost;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -504,6 +543,7 @@ export interface TravelLettersSelect<T extends boolean = true> {
   photo?: T;
   date?: T;
   introduction?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -604,6 +644,17 @@ export interface TravelLetterImagesSelect<T extends boolean = true> {
               filename?: T;
             };
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "travel-letter-posts_select".
+ */
+export interface TravelLetterPostsSelect<T extends boolean = true> {
+  photo?: T;
+  blogContent?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

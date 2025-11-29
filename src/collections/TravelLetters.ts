@@ -31,5 +31,14 @@ export const TravelLetters: CollectionConfig = {
       label: 'Short description of travel letter topic',
       required: true,
     },
+    {
+      name: 'slug',
+      type: 'text',
+      label: 'url',
+      unique: true,
+      admin: {
+        description: 'What url should this blog post be shown through?',
+      },
+    },
   ],
 }

@@ -1,6 +1,8 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 type TravelLetter = {
+  slug: string
   id: number
   title: string
   date: string
@@ -37,6 +39,7 @@ export default function TravelLetters({ travelLetters }: TravelLetters) {
             <h2>{travelLetter.title}</h2>
             <p>{travelLetter.date.split('T')[0]}</p>
             <p>{travelLetter.introduction}</p>
+            <Link href={`travelletterposts/${travelLetter.slug}`}>Read the whole post here!</Link>
           </article>
         )
       })}

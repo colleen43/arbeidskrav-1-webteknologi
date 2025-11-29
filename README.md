@@ -224,6 +224,27 @@ Svar: Jeg måtte svare på noen spørsmål in terminalen som jeg ikke så før n
   - Jeg laget en mappe med nytt navn, men det var egentlig ikke problemet. Problemet var at bildene var fortsatt i payload databasen, så man kunne fortsatt se et sjelett av dem. Så jeg måtte kjøre sqlite3 `arbeidskrav-1-webteknologi.db "DELETE FROM my_travel_letter_images;"` i terminalen og avslutte Cursor og starte opp igjen -- nå er de gamle bildene borte. 
 
   MEN - jeg får forstatt slike problemer i terminalen som i punkt 2 pga at jeg endret navnet på MyTravelImages.ts kolleksjon. Så skal forsøke å slette og lage en ny fil slik at jeg slipper å svare på disse spørsmålene hver gang. 
+     - Det fungerte å slette og lage en ny fil, så da er jeg i gang igjen.
+
+25. Læring: Jeg forstår ikke forskjellen mellom paginering og vanlig url parametere. 
+      Svar: Paginering er for når du har såpass mange artikler på en side at de må deles opp på flere sider. 
+
+26. Synes det er vanskelig å forstå hvordan å bruke url-parametere på disse blog post sidene som jeg skal ha gjennom å trykke på en knapp på de forskjellige introduksjonene, særlig mtp at de skal også være redigerbare. Jeg tror jeg må lage en collection som skal ha en relasjon til den første siden, slik at det er satt opp for at noen in admin kan når som helst sette opp både en ny introduksjon, og en ny blog post. 
+         - Må bruke dynamisk routing i allefall. 
+         - Skal forsøke å gjøre samme oppsett som med Pages.ts
+         
+         - Neste problem: Nå fikk jeg dynamisk routing til å fungere, men jeg sliter med linken som skal føre til riktig blog post, fordi at linken må få inn riktig slug, men komponenten TravelLetters.tsx blir kalt gjennom RenderBlocks allerede, og der er ikke slug tilgjengelig. 
+
+         Løsning: Jeg gjorde at slugen i admin fra innholdssamlingen TravelLetters.ts må matche slugen i TravelLetterPosts.ts for at linken skal føre til riktig post. 
+
+
+
+27. Notert: Neste gang skal jeg ta nye navn på bildene så jeg forstår hvilket bilde er hva. 
+
+28. Problem: [Error: You cannot use different slug names for the same dynamic path ('pageSlug' !== 'travelLetterPostsSlug').] 
+     - Løsning: Jeg hadde begge dynamiske sidene på samme nivå. Når jeg la den ene i en mappe, så fungerte det. 
+
+
 
 
 26. Spørsmål: Hvis jeg har flere blokker som legges sammen på en page opprettet av Pages.ts, hvor legger jeg main taggen, som skal rundt flere blokker?
